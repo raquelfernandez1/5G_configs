@@ -58,7 +58,7 @@ El despliegue de la red 5G mediante hardware SDR empleado en este proyecto se co
 - **Estación base 5G (gNB)**: implementada sobre una **USRP B210** mediante OpenAirInterface RAN. El gNB se ejecuta de forma tradicional (compilación local) para permitir modificaciones en el código y pruebas con SDR.
 - **Dispositivos de usuario (UE)**: terminales comerciales utilizados como clientes finales — en este estudio, un *OnePlus 9 Pro 5G* y un *Samsung Galaxy S25 Ultra* (con SIMs programadas cuando procede).
 
-![Diagrama del entorno de pruebas 5G](docs/figures/diagrama_entorno_pruebas.png)
+![Diagrama del entorno de pruebas 5G](docs/figures/diagrama_entorno_pruebas1.png)
 
 **Figura 1.** Diagrama del entorno de pruebas 5G: core (OAI CN5G), gNB sobre USRP B210 y UEs (OnePlus / Samsung). Las IPs y interfaces principales (N2, N3, N4, N6) se muestran para referencia.
 
