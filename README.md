@@ -1,6 +1,6 @@
 # 5G_configs
 Este repositorio contiene los archivos de configuración de los proyectos relacionados con 5G, incluyendo la core network de OpenAirInterface, el proyecto OpenAirInterface5G y el proyecto de srsRAN.  
-Es necesario acceder a la memoria del TFM e instalarse cada proyecto para después utilizar y configurar los archivos de configuración recomendados.
+Es necesario acceder a la memoria del TFM e instalarse cada proyecto para después utilizar y utilizar los archivos de configuración recomendados.
 
 ## 1. Estructura del repositorio
 ```
@@ -29,7 +29,7 @@ Contiene la core network de 5G construida con OAI usando `docker-compose`.
 
 ### 1.2. openairinterface5g
 
-Implementación de OpenAirInterface 5G para radio y core opcional.  
+Implementación de OpenAirInterface 5G para simular el gNB.  
 
 - **Objetivo:** Simular la estación base 5G conocida como gNB mediate USRP B210.
 - **Archivos clave:**  
@@ -41,7 +41,9 @@ Implementación de OpenAirInterface 5G para radio y core opcional.
 
 ### 1.3. srsRAN_Project
 
-Proyecto basado en srsRAN para pruebas. Opcional, en este proyecto se ha utilizado OpenAirInterface pero también se ha desplegado srsRAN.
+Proyecto basado en srsRAN, simular el gNB, 5GC, un servidor de métricas, grafana y la base de datos influxdb. 
+Es más fácil de utilizar que openairinterface5g.
+En este proyecto se ha utilizado OpenAirInterface pero también se ha desplegado srsRAN con los archivos de configuración de este repositorio.
 
 ---
 
@@ -56,7 +58,7 @@ El despliegue de la red 5G mediante hardware SDR empleado en este proyecto se co
 - **Estación base 5G (gNB)**: implementada sobre una **USRP B210** mediante OpenAirInterface RAN. El gNB se ejecuta de forma tradicional (compilación local) para permitir modificaciones en el código y pruebas con SDR.
 - **Dispositivos de usuario (UE)**: terminales comerciales utilizados como clientes finales — en este estudio, un *OnePlus 9 Pro 5G* y un *Samsung Galaxy S25 Ultra* (con SIMs programadas cuando procede).
 
-![Diagrama del entorno de pruebas 5G](oai-cn5g/docs/figures/diagrama_entorno_pruebas.png)
+![Diagrama del entorno de pruebas 5G](docs/figures/diagrama_entorno_pruebas.png)
 
 **Figura 1.** Diagrama del entorno de pruebas 5G: core (OAI CN5G), gNB sobre USRP B210 y UEs (OnePlus / Samsung). Las IPs y interfaces principales (N2, N3, N4, N6) se muestran para referencia.
 
@@ -129,7 +131,9 @@ A continuación, se muestra el flujo de despliegue seguido para la puesta en mar
 
 ![Flujo de despliegue de la red 5G](docs/figures/FlujoDespliegueRed5g.png)
 
-**Figura 2.** Flujo de despliegue de la red 5G:  
+**Figura 2.** Flujo de despliegue de la red 5G.
+
+Hay que seguir los siguientes pasos:
 1. Arranque del núcleo 5G (OAI CN5G) mediante `docker-compose`.  
 2. Ejecución del gNB con USRP B210 mediante `nr-softmodem`.  
 3. Conexión de los dispositivos de usuario (UE) con sus tarjetas SIM programadas. 
@@ -137,7 +141,7 @@ A continuación, se muestra el flujo de despliegue seguido para la puesta en mar
 A continuación, especificaremos los comandos de despliegue de la red 5G.
 Los Anexos se pueden consultar en el TFM correspondiente, que deberá ser solicitado en caso de querer consultarlo, ya que no está permitida su publicación abierta. 
 
-### 3.1. Desplegar el core network OAI
+### 4.1. Desplegar el core network OAI
 Recordar que para desplegar el core network hay que instalarselo del repositorio
 
 ```bash
@@ -151,8 +155,7 @@ Para detener los contenedores:
 docker-compose down
 ```
 
-### 3.1. Desplegar el gNB con OpenAirInterface 5G
-Antes de lanzar el gNB habrá que compilar el proyecto.
+### 4.1. Desplegar el gNB con OpenAirInterface 5G
 
 ```bash
 cd ~/GitHub/5G/openairinterface5g/cmake_targets
